@@ -22,7 +22,8 @@ struct HomeView: View {
                         item in
                         ArticleView(article: item)
                     }
-                }.navigationTitle(Text("News"))
+                    .navigationTitle(Text("News"))
+                }
             }
             
         }.onAppear(perform: viewModel.getArticles)
