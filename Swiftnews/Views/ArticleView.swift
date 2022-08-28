@@ -35,6 +35,13 @@ struct ArticleView: View {
             VStack(alignment: .leading, spacing: 4 ){
                 Text(article.title ?? " ").foregroundColor(.black).font(.system(size: 18, weight: .semibold))
                 Text(article.source ?? "N/A").foregroundColor(.gray).font(.footnote)
+                if let date = article.date{
+                    HStack{
+                        Text(date, style: .date).foregroundColor(.gray).font(.system(size: 12, weight: .bold))
+                        Text(date, style: .time).foregroundColor(.gray).font(.system(size: 12))
+                    }
+                   
+                }
               
             }
         }

@@ -10,7 +10,16 @@ import SwiftUI
 struct HomeView: View {
    
     var body: some View {
-       Text("Hello")
+        TabView{
+            FeedsView().tabItem{
+                Image(systemName: "newspaper")
+                Text("Feed")
+            }
+            SettingsView().tabItem{
+                Image(systemName: "gearshape")
+                Text("Settings")
+            }
+        }
     }
    
 }
