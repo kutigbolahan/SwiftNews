@@ -14,16 +14,13 @@ import URLImage
 //using optional chanining: to see if we should use the url to display an image or use a place holder
 struct ArticleView: View {
     let article : Article
+    
     var body: some View {
         HStack{
             if let imgUrl = article.image,
                let url = URL(string: imgUrl){
                 URLImage(url,
-//                         options: URLImageOptions(
-//                            identifier: article.id.uuidString,
-//                            cachePolicy:.returnStoreElseLoad(downloadDelay:0.25, cacheDelay: nil)
-//
-//                         ),
+
                          failure: { error, _ in
                    
                     PlaceHolderImageView()
@@ -38,6 +35,7 @@ struct ArticleView: View {
             VStack(alignment: .leading, spacing: 4 ){
                 Text(article.title ?? " ").foregroundColor(.black).font(.system(size: 18, weight: .semibold))
                 Text(article.source ?? "N/A").foregroundColor(.gray).font(.footnote)
+              
             }
         }
     }
