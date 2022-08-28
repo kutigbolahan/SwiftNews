@@ -14,8 +14,9 @@ import URLImage
 //using optional chanining: to see if we should use the url to display an image or use a place holder
 struct ArticleView: View {
     let article : Article
-    
+    @State  var isLoading: Bool
     var body: some View {
+     
         HStack{
             if let imgUrl = article.image,
                let url = URL(string: imgUrl){
@@ -45,6 +46,8 @@ struct ArticleView: View {
               
             }
         }
+        .redacted(reason: isLoading ? .placeholder : [])
+        .allowsHitTesting(!isLoading )
     }
 }
 
@@ -56,6 +59,6 @@ struct ArticleView: View {
 
 struct ArticleView_Previews: PreviewProvider {
     static var previews: some View {
-        ArticleView(article: Article.dummyData).previewLayout(.sizeThatFits)
+        ArticleView(article: Article.dummyData.first!, isLoading: false).previewLayout(.sizeThatFits)
     }
 }

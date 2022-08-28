@@ -15,15 +15,15 @@ struct FeedsView: View {
         NavigationView{
             Group{
                 switch viewModel.state {
-                case .loading:
-                    ProgressView()
+            
                 case .failed(let error):
                     ErrorView(error: error, handler: viewModel.getArticles)
-                case .success(let articles):
-                 
-                        List(articles){
+                    
+                default:
+
+                    List(viewModel.isLoading ? Article.dummyData: viewModel.articles){
                             item in
-                            ArticleView(article: item).onTapGesture {
+                        ArticleView(article: item, isLoading: viewModel.isLoading).onTapGesture {
                                 loadUrl(url: item.url)
                             }
                         }

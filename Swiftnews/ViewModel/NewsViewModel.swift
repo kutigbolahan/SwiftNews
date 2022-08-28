@@ -11,15 +11,23 @@ import SwiftUI
 
 protocol NewsViewModel{
     func getArticles()
-    
+    var isLoading: Bool {get}
 }
 
+
+
 class NewsViewModelImpl: ObservableObject, NewsViewModel {
+   
+    
     private let service : NewsService
     private(set) var articles = [Article]()
+    @Published private(set) var state: ResultState = .loading
     private var cancellables = Set<AnyCancellable>()
+    var isLoading: Bool{
+        state == .loading
+    }
     
-   @Published private(set) var state: ResultState = .loading
+ 
     init(service: NewsService){
         self.service = service
     }
