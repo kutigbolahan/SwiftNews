@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Binding var darkModeEnabled: Bool
+    @Binding var systemThemeEnabled: Bool
     var body: some View {
         NavigationView{
             Form {
                 Section(header: Text("Display"), footer: Text("System settings will override Dark Mode and use the current device theme")){
-                    Toggle(isOn: .constant(false), label: {
+                    Toggle(isOn: $darkModeEnabled, label: {
                         Text("Dark Mode")
                     })
                     
-                    Toggle(isOn: .constant(true), label: {
+                    Toggle(isOn: $systemThemeEnabled, label: {
                         Text("use system settings")
                     })
                 }
@@ -38,6 +40,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(darkModeEnabled: .constant(false), systemThemeEnabled: .constant(false))
     }
 }

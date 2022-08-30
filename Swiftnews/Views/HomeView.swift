@@ -17,7 +17,7 @@ struct HomeView: View {
                 Image(systemName: "newspaper")
                 Text("Feed")
             }
-            SettingsView().tabItem{
+            SettingsView(darkModeEnabled: $darkModeEnabled, systemThemeEnabled: $systemThemeEnabled).tabItem{
                 Image(systemName: "gearshape")
                 Text("Settings")
             }
