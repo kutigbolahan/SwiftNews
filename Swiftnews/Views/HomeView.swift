@@ -21,6 +21,8 @@ struct HomeView: View {
                 Image(systemName: "gearshape")
                 Text("Settings")
             }
+        }.onAppear{
+            SystemThemeManager.shared.handleTheme(darkMode: darkModeEnabled, system: systemThemeEnabled)
         }
     }
    

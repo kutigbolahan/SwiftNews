@@ -16,10 +16,14 @@ struct SettingsView: View {
                 Section(header: Text("Display"), footer: Text("System settings will override Dark Mode and use the current device theme")){
                     Toggle(isOn: $darkModeEnabled, label: {
                         Text("Dark Mode")
+                    }).onChange(of: darkModeEnabled, perform: {
+                        _ in SystemThemeManager.shared.handleTheme(darkMode: darkModeEnabled, system: systemThemeEnabled)
                     })
                     
                     Toggle(isOn: $systemThemeEnabled, label: {
                         Text("use system settings")
+                    }).onChange(of: systemThemeEnabled, perform: {
+                        _ in SystemThemeManager.shared.handleTheme(darkMode: darkModeEnabled, system: systemThemeEnabled)
                     })
                 }
                 Section{
